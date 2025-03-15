@@ -1,0 +1,25 @@
+{
+    "team1Name": "Gryphons",
+    "team2Name": "Unamed",
+    "score1": 4,
+    "score2": 3,
+    "game": "Marvel Rivals",
+    "team1": [
+        [
+            {
+                "name": "Martian",
+                "character": "Hulk",
+                "role": "Vangaurd"
+            }
+        ]
+    ],
+    "team2": [
+        [
+            {
+                "name": "Some guy",
+                "character": "Hulk",
+                "role": "Vangaurd"
+            }
+        ]
+    ]
+}
