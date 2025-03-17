@@ -1,25 +1,44 @@
 {
     "team1Name": "Gryphons",
-    "team2Name": "Unamed",
-    "score1": 4,
-    "score2": 3,
+    "team2Name": "SomeOtherTeam",
+    "score1": 3,
+    "score2": 1,
     "game": "Marvel Rivals",
     "team1": [
         [
             {
-                "name": "Martian",
-                "character": "Hulk",
+                "name": "Moustache",
+                "character": "Doctor Strange",
                 "role": "Vangaurd"
+            },
+            {
+                "name": "Martian",
+                "character": "Venom",
+                "role": "Vangaurd"
+            },
+            {
+                "name": "SinLee",
+                "character": "Spider-Man",
+                "role": "Duelist"
+            },
+            {
+                "name": "ItsMintz",
+                "character": "Storm",
+                "role": "Duelist"
+            },
+            {
+                "name": "Thrx",
+                "character": "Mantis",
+                "role": "Strategist"
+            },
+            {
+                "name": "RustyLad",
+                "character": "Invisible Woman",
+                "role": "Strategist"
             }
         ]
     ],
     "team2": [
-        [
-            {
-                "name": "Some guy",
-                "character": "Hulk",
-                "role": "Vangaurd"
-            }
-        ]
+        []
     ]
 }

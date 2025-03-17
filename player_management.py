@@ -16,12 +16,15 @@ def add_player_row(team_frame, team_list, game_type):
     team_list.append(row)
 
 # Function to remove player row
-def remove_player_row(row, team_list):
-    for widget in row.values():
-        widget.grid_forget()
-        widget.destroy()
-    team_list.remove(row)
-    refresh_player_rows(team_list)
+def remove_player_row(team_frame, team_list):
+    if(team_frame):
+        last_row = team_frame[-1];
+        for widget in last_row.values():
+            widget.grid_forget()
+            widget.destroy()
+        team_list.pop()
+        refresh_player_rows(team_list)
+    
     
 # Function to refresh player rows after removal
 def refresh_player_rows(team_list):
