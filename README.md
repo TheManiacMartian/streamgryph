@@ -5,7 +5,7 @@ A simple streaming app that manages stream data and exports to a JSON file. Made
 ![application screenshot](https://i.gyazo.com/78ae77fb04589d08a0826e5db0bfd693.png)
 
 ## Download
-Please download for your operating system from the [Releases]() page.
+Please download for your operating system from the [Releases](https://github.com/TheManiacMartian/streamgryph/releases/) page.
 
 
 ## Build
