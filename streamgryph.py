@@ -11,6 +11,14 @@ from game_data import GAME_DATA
 
 # --- Functions ---
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, relative_path)
+
 def select_directory():
     folder_selected = filedialog.askdirectory()
     if folder_selected:
@@ -53,6 +61,7 @@ def collect_player_data(team_list):
 # --- Tkinter Window Setup ---
 root = tk.Tk()
 root.title("StreamGryph - Team Manager")
+root.iconbitmap(resource_path('icon.ico'))
 root.geometry("900x600")
 root.minsize(900, 600)
 
