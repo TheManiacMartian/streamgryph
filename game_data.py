@@ -29,6 +29,18 @@ GAME_DATA = {
             "Tejo",
             "Waylay"
             ],
+        "maps" : [
+            "Sunset",
+            "Lotus",
+            "Pearl",
+            "Fracture",
+            "Breeze",
+            "Icebox",
+            "Bind",
+            "Haven",
+            "Split",
+            "Ascent"
+        ],
         "roles": ["Duelist", "Initiator", "Sentinel", "Controller"],
         "char_to_role": [3,3,3,0,2,2,1,0,0,1,0,2,1,0,3,1,2,0,1,3,2,2,0,3,2,1,0]
     },
@@ -72,11 +84,19 @@ GAME_DATA = {
             "Mantis",
             "Rocket Raccoon"
         ],
-        "roles" : [
-            "Vangaurd",
-            "Duelist",
-            "Strategist"
+        "maps" : [
+            "Central Park",
+            "Hall of Djalia",
+            "Symbiotic Surface",
+            "Shin-Shibuya",
+            "Midtown",
+            "Spider-Islands",
+            "Yggdrasill Path",
+            "Hell's Heaven",
+            "Birin T'Challa",
+            "Royal Palace"
         ],
+        "roles" : ["Vangaurd","Duelist","Strategist"],
         "char_to_role": [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2]
     },
     "Overwatch": {
@@ -123,6 +143,26 @@ GAME_DATA = {
             "Wrecking Ball",
             "Zarya",
             "Zenyatta"
+        ],
+        "maps": [
+            "Antarctic Peninsula",
+            "Busan",
+            "Ilios",
+            "Lijiang Tower",
+            "Nepal",
+            "Oasis",
+            "Samoa",
+            "Colosseo",
+            "Esperanca",
+            "New Queen Street",
+            "Runasapi",
+            "Blizzard World",
+            "Eichewalde",
+            "Holywood",
+            "King's Row",
+            "Midtown",
+            "Numbani",
+            "Paraiso"
         ],
         "roles": ["Tank", "Damage", "Support"],
         "char_to_role": [2,1,2,1,2,1,0,0,1,1,1,0,2,0,1,2,2,2,2,0,1,2,2,0,1,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,2]
@@ -299,6 +339,9 @@ GAME_DATA = {
             "Zilean",
             "Zoe",
             "Zyra"
+        ],
+        "maps": [
+            "Summoner's Rift"
         ],
         "roles": ["Top", "Mid", "Bot", "Jungle", "Support"],
         "char_to_role": [

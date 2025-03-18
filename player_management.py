@@ -31,6 +31,24 @@ def add_player_row(team_frame, team_list, game_type):
     # Run on_character_select whenever a new player is selected
     row['character_var'].trace_add("write", lambda *args: on_character_select(team_list, game_type, team_list.index(row), row['character_var'].get()))
 
+# Add a new map pick dynamically
+def add_map(root,game_type,map_list):
+    button = {}
+    button['map_var'] = tk.StringVar(value="None")
+    col = len(map_list) + 1
+
+    button['map'] = ttk.Combobox(root, textvariable=button['map_var'], values=GAME_DATA[game_type.get()]['maps'], state="readonly").grid(row=5,column=col)
+    map_list.append(button)
+
+# Add new ban dynamically
+def add_ban(root,game_type,ban_list):
+    button = {}
+    button['ban_var'] = tk.StringVar(value="None")
+    col = len(ban_list) + 1
+
+    button['ban'] = ttk.Combobox(root, textvariable=button['ban_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly").grid(row=6,column=col)
+    ban_list.append(button)
+
 # Function to remove player row
 def remove_player_row(team_frame, team_list):
     if(team_frame):

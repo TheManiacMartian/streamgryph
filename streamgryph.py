@@ -5,6 +5,7 @@ import sys
 from tkinter import filedialog
 
 from player_management import update_all_player_dropdowns, add_player_row, remove_player_row
+from player_management import add_map, add_ban
 from game_data import GAME_DATA
 
 # functions
@@ -33,6 +34,8 @@ def save_data():
         "score1": int(score1_entry.get() or 0),
         "score2": int(score2_entry.get() or 0),
         "game": game_type.get(),
+        "mapPick": [map['map_var'].get() for map in map_list],
+        "banPick": [ban['ban_var'].get() for ban in ban_list],
         "team1": [collect_player_data(team1_players)],
         "team2": [collect_player_data(team2_players)]
     }
@@ -79,6 +82,8 @@ root.geometry(f'{WIDTH}x{HEIGHT}+{x}+{y}')
 
 team1_players = []
 team2_players = []
+ban_list = []
+map_list = []
 
 game_type = tk.StringVar(value="Valorant")
 
@@ -106,12 +111,16 @@ score1_entry.grid(row=2, column=1)
 score2_entry.grid(row=3, column=1)
 game_menu.grid(row=4, column=1)
 
+# Map Picks & Bans
+tk.Button(root, text="Add New Map", command=lambda: add_map(root, game_type, map_list)).grid(row=5, column=0, pady=5)
+tk.Button(root, text="Add New Ban", command=lambda: add_ban(root, game_type, ban_list)).grid(row=6, column=0, pady=5)
+
 # Teams UI
 team1_frame = tk.LabelFrame(root, text="Team 1")
-team1_frame.grid(row=5, column=0, padx=10, pady=10)
+team1_frame.grid(row=7, column=0, padx=10, pady=10)
 
 team2_frame = tk.LabelFrame(root, text="Team 2")
-team2_frame.grid(row=5, column=1, padx=10, pady=10)
+team2_frame.grid(row=7, column=1, padx=10, pady=10)
 
 # Table headers
 tk.Label(team1_frame, text="Name").grid(row=0, column=0)
@@ -130,13 +139,13 @@ tk.Button(team2_frame, text="Add Player", command=lambda: add_player_row(team2_f
 
 
 # Show current target directory
-tk.Label(root, textvariable=target_directory).grid(row=6,column=0,pady=5)
+tk.Label(root, textvariable=target_directory).grid(row=8,column=0,pady=5)
 
 # Button to select target directory
-tk.Button(root, text="Select Save Directory", command=select_directory).grid(row=7, column=0, pady=5)
+tk.Button(root, text="Select Save Directory", command=select_directory).grid(row=9, column=0, pady=5)
 
 # Save button
-tk.Button(root, text="Save", command=save_data).grid(row=8, column=0, columnspan=2, pady=10)
+tk.Button(root, text="Save", command=save_data).grid(row=10, column=0, columnspan=2, pady=10)
 
 # Status Label
 status_label = tk.Label(root, text="")
