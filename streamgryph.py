@@ -96,7 +96,7 @@ team1_entry = tk.Entry(root)
 team2_entry = tk.Entry(root)
 score1_entry = tk.Entry(root)
 score2_entry = tk.Entry(root)
-game_menu = tk.OptionMenu(root, game_type, *GAME_DATA.keys(), command=lambda _: update_all_player_dropdowns(team1_players, team2_players, game_type.get()))
+game_menu = tk.OptionMenu(root, game_type, *GAME_DATA.keys(), command=lambda _: update_all_player_dropdowns(team1_players, team2_players, map_list, ban_list, game_type.get()))
 
 tk.Label(root, text="Team 1 Name:").grid(row=0, column=0)
 tk.Label(root, text="Team 2 Name:").grid(row=1, column=0)

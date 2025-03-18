@@ -37,7 +37,8 @@ def add_map(root,game_type,map_list):
     button['map_var'] = tk.StringVar(value="None")
     col = len(map_list) + 1
 
-    button['map'] = ttk.Combobox(root, textvariable=button['map_var'], values=GAME_DATA[game_type.get()]['maps'], state="readonly").grid(row=5,column=col)
+    button['map'] = ttk.Combobox(root, textvariable=button['map_var'], values=GAME_DATA[game_type.get()]['maps'], state="readonly")
+    button['map'].grid(row=5,column=col)
     map_list.append(button)
 
 # Add new ban dynamically
@@ -46,7 +47,8 @@ def add_ban(root,game_type,ban_list):
     button['ban_var'] = tk.StringVar(value="None")
     col = len(ban_list) + 1
 
-    button['ban'] = ttk.Combobox(root, textvariable=button['ban_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly").grid(row=6,column=col)
+    button['ban'] = ttk.Combobox(root, textvariable=button['ban_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly")
+    button['ban'].grid(row=6,column=col)
     ban_list.append(button)
 
 # Function to remove player row
@@ -81,6 +83,16 @@ def update_player_dropdown(row, game_type):
     row['role_var'].set(roles[0])
 
 # update dropdowns for all players
-def update_all_player_dropdowns(team1_list, team2_list, game_type):
+def update_all_player_dropdowns(team1_list, team2_list, map_list, ban_list, game_type):
     for row in team1_list + team2_list:
         update_player_dropdown(row, game_type)
+
+    for map in map_list:
+        maps = GAME_DATA[game_type]["maps"]
+        map['map'].configure(values=maps)
+        map['map_var'].set(maps[0])
+
+    for ban in ban_list:
+        characters = GAME_DATA[game_type]["characters"]
+        ban['ban'].configure(values=characters)
+        ban['ban_var'].set(characters[0])
