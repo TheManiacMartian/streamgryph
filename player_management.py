@@ -5,7 +5,7 @@ from game_data import GAME_DATA
 # Updates role when a character is seleced
 def on_character_select(team_list, game_type, row, character):
 
-    if not character == "unknown":
+    if not character == "unknown" and character in GAME_DATA[game_type.get()]['characters']:
         # Find the index of the given character in the game data list
         char_to_index = GAME_DATA[game_type.get()]['characters'].index(character)
         char_to_index = GAME_DATA[game_type.get()]['char_to_role'][char_to_index]
@@ -32,24 +32,25 @@ def add_player_row(team_frame, team_list, game_type):
     row['character_var'].trace_add("write", lambda *args: on_character_select(team_list, game_type, team_list.index(row), row['character_var'].get()))
 
 # Add a new map pick dynamically
-def add_map(root,game_type,map_list):
+def add_map(root, game_type, map_list):
     button = {}
     button['map_var'] = tk.StringVar(value="None")
     col = len(map_list) + 1
 
     button['map'] = ttk.Combobox(root, textvariable=button['map_var'], values=GAME_DATA[game_type.get()]['maps'], state="readonly")
-    button['map'].grid(row=5,column=col)
+    button['map'].grid(row=5, column=col, padx=5, pady=5)  # Properly place in grid
     map_list.append(button)
 
-# Add new ban dynamically
-def add_ban(root,game_type,ban_list):
+# Add a new ban pick dynamically
+def add_ban(root, game_type, ban_list):
     button = {}
     button['ban_var'] = tk.StringVar(value="None")
     col = len(ban_list) + 1
 
     button['ban'] = ttk.Combobox(root, textvariable=button['ban_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly")
-    button['ban'].grid(row=6,column=col)
+    button['ban'].grid(row=6, column=col, padx=5, pady=5)  # Properly place in grid
     ban_list.append(button)
+
 
 # Function to remove player row
 def remove_player_row(team_frame, team_list):
@@ -61,7 +62,6 @@ def remove_player_row(team_frame, team_list):
         team_list.pop()
         refresh_player_rows(team_list)
     
-    
 # Function to refresh player rows after removal
 def refresh_player_rows(team_list):
     for idx, row in enumerate(team_list):
@@ -72,6 +72,7 @@ def refresh_player_rows(team_list):
 # Update dropdown menus
 def update_player_dropdown(row, game_type):
     characters = GAME_DATA[game_type]["characters"]
+    indexes = GAME_DATA[game_type]['char_to_role']
     roles = GAME_DATA[game_type]["roles"]
 
     # Update character dropdown
@@ -80,19 +81,24 @@ def update_player_dropdown(row, game_type):
 
     # Update role dropdown
     row['role'].configure(values=roles)
-    row['role_var'].set(roles[0])
+    row['role_var'].set(roles[indexes[0]])
 
 # update dropdowns for all players
 def update_all_player_dropdowns(team1_list, team2_list, map_list, ban_list, game_type):
+
+    characters = GAME_DATA[game_type]["characters"]
+    maps = GAME_DATA[game_type]["maps"]
+
+    # Update players' dropdowns
     for row in team1_list + team2_list:
         update_player_dropdown(row, game_type)
 
-    for map in map_list:
-        maps = GAME_DATA[game_type]["maps"]
-        map['map'].configure(values=maps)
-        map['map_var'].set(maps[0])
+    # Update map dropdowns
+    for map_entry in map_list:
+        map_entry['map'].configure(values=maps)
+        map_entry['map_var'].set("None")
 
-    for ban in ban_list:
-        characters = GAME_DATA[game_type]["characters"]
-        ban['ban'].configure(values=characters)
-        ban['ban_var'].set(characters[0])
+    # Update ban dropdowns
+    for ban_entry in ban_list:
+        ban_entry['ban'].configure(values=characters)
+        ban_entry['ban_var'].set("None")
