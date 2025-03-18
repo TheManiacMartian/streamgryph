@@ -10,4 +10,4 @@ Please download for your operating system from the [Releases](https://github.com
 
 ## Build
 To build the project manually, run:
-`python -m PyInstaller main.py --icon=icon.ico --add-data "icon.ico:."` In the root directory of StreamGryph.
+`python -m PyInstaller streamgryph.py --icon=icon.ico --add-data "icon.ico:."` In the root directory of StreamGryph.
