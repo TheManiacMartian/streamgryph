@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from game_data import GAME_DATA
 
 # Updates role when a character is seleced
@@ -19,8 +20,8 @@ def add_player_row(team_frame, team_list, game_type):
     row['character_var'] = tk.StringVar(value="unknown")
     row['role_var'] = tk.StringVar(value="unknown")
     row['name'] = tk.Entry(team_frame, width=15)
-    row['character'] = tk.OptionMenu(team_frame, row['character_var'], *GAME_DATA[game_type.get()]['characters'])
-    row['role'] = tk.OptionMenu(team_frame, row['role_var'], *GAME_DATA[game_type.get()]['roles'])
+    row['character'] = ttk.Combobox(team_frame, textvariable=row['character_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly")
+    row['role'] = ttk.Combobox(team_frame, textvariable=row['role_var'], values=GAME_DATA[game_type.get()]['roles'], state="readonly")
     current_row = len(team_list) + 1
     row['name'].grid(row=current_row, column=0)
     row['character'].grid(row=current_row, column=1)
@@ -54,17 +55,11 @@ def update_player_dropdown(row, game_type):
     roles = GAME_DATA[game_type]["roles"]
 
     # Update character dropdown
-    menu = row['character']['menu']
-    menu.delete(0, 'end')
-    for char in characters:
-        menu.add_command(label=char, command=lambda value=char: row['character_var'].set(value))
+    row['character'].configure(values=characters)
     row['character_var'].set(characters[0])
 
     # Update role dropdown
-    menu = row['role']['menu']
-    menu.delete(0, 'end')
-    for role in roles:
-        menu.add_command(label=role, command=lambda value=role: row['role_var'].set(value))
+    row['role'].configure(values=roles)
     row['role_var'].set(roles[0])
 
 # update dropdowns for all players

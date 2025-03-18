@@ -68,7 +68,7 @@ root.iconbitmap(resource_path("icon.ico"))
 
 target_directory = tk.StringVar(value="data")
 
-WIDTH = 625
+WIDTH = 1000
 HEIGHT = 500
 
 x = int((root.winfo_screenwidth() / 2) - (WIDTH / 2))
