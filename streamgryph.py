@@ -143,6 +143,6 @@ status_label = tk.Label(root, text="")
 status_label.grid(row=9, column=0, columnspan=2)
 
 add_player_row(team1_frame, team1_players, game_type)
-add_player_row(team2_frame, team1_players, game_type)
+add_player_row(team2_frame, team2_players, game_type)
 
 root.mainloop()

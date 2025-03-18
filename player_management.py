@@ -1,6 +1,18 @@
 import tkinter as tk
 from game_data import GAME_DATA
 
+# Updates role when a character is seleced
+def on_character_select(team_list, game_type, row, character):
+
+    if not character == "unknown":
+        # Find the index of the given character in the game data list
+        char_to_index = GAME_DATA[game_type.get()]['characters'].index(character)
+        char_to_index = GAME_DATA[game_type.get()]['char_to_role'][char_to_index]
+        role = GAME_DATA[game_type.get()]['roles'][char_to_index]
+
+        #Update the role of the player to follow the character
+        team_list[row]['role_var'].set(role)
+
 # Function to add player row dynamically
 def add_player_row(team_frame, team_list, game_type):
     row = {}
@@ -14,6 +26,9 @@ def add_player_row(team_frame, team_list, game_type):
     row['character'].grid(row=current_row, column=1)
     row['role'].grid(row=current_row, column=2)
     team_list.append(row)
+
+    # Run on_character_select whenever a new player is selected
+    row['character_var'].trace_add("write", lambda *args: on_character_select(team_list, game_type, team_list.index(row), row['character_var'].get()))
 
 # Function to remove player row
 def remove_player_row(team_frame, team_list):
