@@ -2,7 +2,7 @@
 
 A simple streaming app that manages stream data and exports to a JSON file. Made for the University of Guelph's Esports club, Gryphon Gaming.
 
-![application screenshot](https://i.gyazo.com/78ae77fb04589d08a0826e5db0bfd693.png)
+![application screenshot](https://i.gyazo.com/a05c53224ef76478fa9943d3e8d64a2a.png)
 
 ## Download
 Please download for your operating system from the [Releases](https://github.com/TheManiacMartian/streamgryph/releases/) page.
