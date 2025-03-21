@@ -250,7 +250,7 @@ GAME_DATA = {
             "Malzahar",
             "Maokai",
             "Master Yi",
-            "Mei",
+            "Mel",
             "Milio",
             "Miss Fortune",
             "Mordekaiser",
