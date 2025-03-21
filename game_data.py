@@ -16,7 +16,7 @@ GAME_DATA = {
             "Skye",
             "Yoru",
             "Astra",
-            "KAY/O",
+            "KAY-O",
             "Chamber",
             "Neon",
             "Fade",
