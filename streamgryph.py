@@ -5,8 +5,8 @@ import sys
 from tkinter import filedialog
 from tkinter import ttk
 
-from player_management import update_all_player_dropdowns, add_player_row, remove_player_row
-from player_management import add_map, add_ban
+from player_management import update_all_player_dropdowns, add_player_row, remove_player_row, clear_player
+from player_management import add_map, add_ban, clear_map, clear_ban
 from game_data import GAME_DATA
 
 # --- Functions ---
@@ -143,6 +143,8 @@ team1_scroll = create_scrollable_frame(team1_frame)
 team1_button_frame = tk.Frame(team1_frame)
 team1_button_frame.grid(row=1, column=0, pady=5)
 tk.Button(team1_button_frame, text="Add Player", command=lambda: add_player_row(team1_scroll, team1_players, game_type)).grid(row=0, column=0, padx=10, pady=5)
+tk.Button(team1_button_frame, text="Remove Player", command=lambda: remove_player_row(team1_players)).grid(row=0, column=1, padx=10, pady=5)
+tk.Button(team1_button_frame, text="Clear Players", command=lambda: clear_player(team1_players)).grid(row=0, column=2, padx=10, pady=5)
 
 # Create the scrollable box for Team 2
 team2_frame = tk.LabelFrame(root, text="Team 2")
@@ -155,6 +157,8 @@ team2_scroll = create_scrollable_frame(team2_frame)
 team2_button_frame = tk.Frame(team2_frame)
 team2_button_frame.grid(row=1, column=0, pady=5)
 tk.Button(team2_button_frame, text="Add Player", command=lambda: add_player_row(team2_scroll, team2_players, game_type)).grid(row=0, column=0, padx=10, pady=5)
+tk.Button(team2_button_frame, text="Remove Player", command=lambda: remove_player_row(team2_players)).grid(row=0, column=1, padx=10, pady=5)
+tk.Button(team2_button_frame, text="Clear Players", command=lambda: clear_player(team2_players)).grid(row=0, column=2, padx=10, pady=5)
 
 # --- Map & Ban Section ---
 map_ban_frame = tk.LabelFrame(root, text="Map & Ban Picks")
@@ -170,7 +174,9 @@ ban_list_frame.grid(row=1, column=1, sticky="w")
 tk.Label(map_ban_frame, text="Maps:").grid(row=0, column=0, padx=10, sticky="w")
 tk.Label(map_ban_frame, text="Bans:").grid(row=1, column=0, padx=10, sticky="w")
 tk.Button(map_ban_frame, text="Add Map", command=lambda: add_map(map_list_frame, game_type, map_list)).grid(row=0, column=2, padx=10, pady=5)
+tk.Button(map_ban_frame, text="Clear Maps", command=lambda: clear_map(map_list)).grid(row=0, column=3, padx=10, pady=5)
 tk.Button(map_ban_frame, text="Add Ban", command=lambda: add_ban(ban_list_frame, game_type, ban_list)).grid(row=1, column=2, padx=10, pady=5)
+tk.Button(map_ban_frame, text="Clear Bans", command=lambda: clear_ban(ban_list)).grid(row=1, column=3, padx=10, pady=5)
 
 # --- Save & Directory Section ---
 save_frame = tk.Frame(root)
