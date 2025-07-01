@@ -2,6 +2,31 @@ import tkinter as tk
 from tkinter import ttk
 from game_data import GAME_DATA
 
+class AutocompleteCombobox(ttk.Combobox):
+    def set_completion_list(self, completion_list):
+        self._completion_list = sorted(completion_list, key=str.lower)
+        self._hits = []
+        self._hit_index = 0
+        self.position = 0
+        self.bind('<KeyRelease>', self._handle_keyrelease)
+        self['values'] = self._completion_list
+
+    def _handle_keyrelease(self, event):
+        if event.keysym in ("BackSpace", "Left", "Right", "Up", "Down"):
+            return
+
+        # Get typed text
+        value = self.get()
+        value = value.strip().lower()
+
+        # Filter matching items
+        if value == '':
+            data = self._completion_list
+        else:
+            data = [item for item in self._completion_list if value in item.lower()]
+
+        self['values'] = data
+
 # Updates role when a character is seleced
 def on_character_select(team_list, game_type, row, character):
 
@@ -20,7 +45,8 @@ def add_player_row(team_frame, team_list, game_type):
     row['character_var'] = tk.StringVar(value="unknown")
     row['role_var'] = tk.StringVar(value="unknown")
     row['name'] = tk.Entry(team_frame, width=15)
-    row['character'] = ttk.Combobox(team_frame, textvariable=row['character_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly")
+    row['character'] = AutocompleteCombobox(team_frame, textvariable=row['character_var'])
+    row['character'].set_completion_list(GAME_DATA[game_type.get()]['characters'])
     row['role'] = ttk.Combobox(team_frame, textvariable=row['role_var'], values=GAME_DATA[game_type.get()]['roles'], state="readonly")
     current_row = len(team_list) + 1
     row['name'].grid(row=current_row, column=0)
@@ -56,7 +82,8 @@ def add_map(root, game_type, map_list):
     button['map_var'] = tk.StringVar(value="None")
     col = len(map_list) + 1
 
-    button['map'] = ttk.Combobox(root, textvariable=button['map_var'], values=GAME_DATA[game_type.get()]['maps'], state="readonly")
+    button['map'] = AutocompleteCombobox(root, textvariable=button['map_var'])
+    button['map'].set_completion_list(GAME_DATA[game_type.get()]['maps'])
     button['map'].grid(row=5, column=col, padx=5, pady=5)  # Properly place in grid
     map_list.append(button)
 
@@ -71,7 +98,8 @@ def add_ban(root, game_type, ban_list):
     button['ban_var'] = tk.StringVar(value="None")
     col = len(ban_list) + 1
 
-    button['ban'] = ttk.Combobox(root, textvariable=button['ban_var'], values=GAME_DATA[game_type.get()]['characters'], state="readonly")
+    button['ban'] = AutocompleteCombobox(root, textvariable=button['ban_var'])
+    button['ban'].set_completion_list(GAME_DATA[game_type.get()]['characters'])
     button['ban'].grid(row=6, column=col, padx=5, pady=5)  # Properly place in grid
     ban_list.append(button)
 
