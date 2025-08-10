@@ -75,7 +75,7 @@ def main():
                 API_URL = ValChar
                 Image_Title = "fullPortrait"
                 top = 50
-                left = 100
+                left = 50
             case 3:
                 API_URL = OWMap
                 Image_Title = "Screenshot"
