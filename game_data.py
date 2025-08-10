@@ -27,8 +27,8 @@ GAME_DATA = {
             "Sage",
             "Reyna",
             "Omen",
-            "Jett"
-            ],
+            "Jett",
+        ],
         "maps" : [
             "Ascent",
             "Split",
@@ -44,7 +44,7 @@ GAME_DATA = {
             "Haven"
         ],
         "roles": ["Duelist", "Initiator", "Sentinel", "Controller"],
-        "char_to_role": [3,3,3,0,2,2,1,0,0,1,0,2,1,0,3,1,2,0,1,3,2,2,0,3,2,1,0]
+        "char_to_role": [1, 1, 1, 2, 1, 0, 2, 1, 1, 2, 1, 2, 3, 2, 3, 0, 3, 3, 0, 3, 0, 0, 0, 2, 0, 3, 0]
     },
     "Marvel Rivals":{
         "characters": [
@@ -96,8 +96,8 @@ GAME_DATA = {
             "Hell's Heaven",
             "Ninomaru",
         ],
-        "roles" : ["Vangaurd","Duelist","Strategist"],
-        "char_to_role": [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2]
+        "roles" : ["Vanguard","Duelist","Strategist"],
+        "char_to_role": [0, 1, 1, 2, 0, 2, 1, 0, 2, 1, 2, 1, 0, 1, 1, 2, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 2, 2, 1, 1, 2, 1]
     },
     "Overwatch": {
         "characters": [
@@ -107,9 +107,10 @@ GAME_DATA = {
             "Bastion",
             "Brigitte",
             "Cassidy",
-            "DVA",
             "Doomfist",
+            "D.Va",
             "Echo",
+            "Freja",
             "Genji",
             "Hanzo",
             "Hazard",
@@ -119,7 +120,7 @@ GAME_DATA = {
             "Juno",
             "Kiriko",
             "Lifeweaver",
-            "Lucio",
+            "Lúcio",
             "Mauga",
             "Mei",
             "Mercy",
@@ -132,17 +133,17 @@ GAME_DATA = {
             "Roadhog",
             "Sigma",
             "Sojourn",
-            "Soldier 76",
+            "Soldier: 76",
             "Sombra",
             "Symmetra",
-            "Torbjorn",
+            "Torbjörn",
             "Tracer",
             "Venture",
             "Widowmaker",
             "Winston",
             "Wrecking Ball",
             "Zarya",
-            "Zenyatta"
+            "Zenyatta",
         ],
         "maps": [
             "Hanamura",
@@ -195,7 +196,7 @@ GAME_DATA = {
             "Arena Victoriae"
         ],
         "roles": ["Tank", "Damage", "Support"],
-        "char_to_role": [2,1,2,1,2,1,0,0,1,1,1,0,2,0,1,2,2,2,2,0,1,2,2,0,1,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,2]
+        "char_to_role": [2, 1, 2, 1, 2, 1, 0, 0, 1, 1, 1, 1, 0, 2, 0, 1, 2, 2, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 2]
     },
     "League of Legends": {
         "characters": [
@@ -361,6 +362,7 @@ GAME_DATA = {
             "Yasuo",
             "Yone",
             "Yorick",
+            "Yunara",
             "Yuumi",
             "Zac",
             "Zed",
@@ -368,7 +370,7 @@ GAME_DATA = {
             "Ziggs",
             "Zilean",
             "Zoe",
-            "Zyra"
+            "Zyra",
         ],
         "maps": [
             "Summoner's Rift"
