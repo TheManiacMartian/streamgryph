@@ -1,10 +1,13 @@
 import requests
 from io import BytesIO
+from bs4 import BeautifulSoup
 from PIL import Image
+import re
 import os
 
+
 ValMap = "https://valorant-api.com/v1/maps"
-ValChar = "https://valorant-api.com/v1/agents"
+ValChar = "https://valorant-api.com/v1/agents?isPlayableCharacter=true"
 
 OWMap = "https://overfast-api.tekrop.fr/maps"
 OWChar = "https://overfast-api.tekrop.fr/heroes"
@@ -15,6 +18,11 @@ MrChar = "https://marvelsapi.com/api/heroes"
 API_URL = "blank"
 Image_Title = "blank"
 
+ValRoles = ["duelist", "initiator", "sentinel", "controller"]
+OWRoles = ["tank", "damage", "support"]
+MRRoles = ["vanguard","duelist","strategist"]
+
+char_to_role = []
 canvas_size = (1368, 1368)
 
 def fetch_data():
@@ -41,14 +49,14 @@ def process_image(url, output_filename, top, left):
     canvas.save(output_filename)
 
 def main():
-    global API_URL, Image_Title
+    global API_URL, Image_Title, char_to_role
 
     while True:
         print("""what would you like the update? (1 - 8):
             1: Valorant Maps
             2: Valorant Agents
             3: Overwatch Maps
-            4: Overwatch Heroes (Not Currently Supported)
+            4: Overwatch Heroes
             5: Marvel Rivals Maps
             6: Marvel Rivals Heroes
             7: League Champs
@@ -67,7 +75,7 @@ def main():
                 API_URL = ValChar
                 Image_Title = "fullPortrait"
                 top = 50
-                left = 0
+                left = 100
             case 3:
                 API_URL = OWMap
                 Image_Title = "Screenshot"
@@ -75,8 +83,8 @@ def main():
                 left = 0
             case 4:
                 API_URL = OWChar
-                Image_Title = "Portrait"
-                top = 0
+                Image_Title = "portrait"
+                top = 150
                 left = 0
             case 5:
                 API_URL = MrMap
@@ -92,7 +100,7 @@ def main():
                 versions = fetch_data()
                 API_URL = f"https://ddragon.leagueoflegends.com/cdn/{versions[0]}/data/en_US/champion.json"
                 left = 50
-                top = 100
+                top = 200
             case _:
                 return
 
@@ -111,6 +119,7 @@ def main():
             return
         
         # Normal Calls
+        print("[")
         if choice > 0 and choice < 6:
             for i, info in enumerate(call, start=1):
 
@@ -120,6 +129,10 @@ def main():
                     name = info.get("name", f"image_{i}")
                 name = name.replace("/","-")
 
+                if choice == 2:
+                    char_to_role.append(ValRoles.index(info.get("role",{}).get("displayName", "").lower()))
+                if choice == 4:
+                    char_to_role.append(OWRoles.index(info.get("role","").lower()))
 
                 thumbnail_url = info.get(Image_Title)
                 if not thumbnail_url:
@@ -139,7 +152,6 @@ def main():
                 output_filename = output_filename.replace(":", "")
                 try:
                     process_image(thumbnail_url, output_filename, top, left)
-                    # print(f"Saved: {output_filename}")
                     print(f'"{name}",')
                 except Exception as e:
                     print(f"Error processing {name}: {e}")
@@ -156,6 +168,8 @@ def main():
                 character = fetch_data()
                 thumbnail_url = character.get("image")
 
+                char_to_role.append(MRRoles.index(character.get("role","").lower()))
+
                 if not thumbnail_url:
                     print(f"No thumbnail URL for {name}, skipping...")
                     continue
@@ -168,12 +182,10 @@ def main():
                     thumbnail_url = thumbnail_url[0]  # Take only the first URL
                     # print(f"Found multiple images for '{name}', using first one")
                 
-                # print(f"Downloading thumbnail...")
                 output_filename = os.path.join("Images", f"{name}.png")
                 output_filename = output_filename.replace(":", "")
                 try:
                     process_image(thumbnail_url, output_filename, top, left)
-                    # print(f"Saved: {output_filename}")
                     print(f'"{name}",')
                 except Exception as e:
                     print(f"Error processing {name}: {e}")
@@ -206,7 +218,11 @@ def main():
                     print(f'"{name}",')
                 except Exception as e:
                     print(f"Error processing {name}: {e}")
-                    
+
+        print("]")        
+        if choice == 2 or choice == 4 or choice == 6:
+            print(f"{char_to_role}")
+        char_to_role = []
         print("\n-------------------------------------------------\n")
 
 if __name__ == "__main__":
